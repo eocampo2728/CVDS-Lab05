@@ -53,4 +53,39 @@ public class PruebaServlet extends HttpServlet{
             responseWriter.flush();
         }   
     }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter responseWriter = resp.getWriter();
+        Optional<String> optName = Optional.ofNullable(req.getParameter("id"));
+        String param = optName.isPresent() && !optName.get().isEmpty() ? optName.get() : "";
+       
+        if(param != ""){
+            try{
+                int paramInt = Integer.parseInt(param);
+                if(paramInt<=200 && paramInt >=1 ){
+                    Todo todo = Service.getTodo(paramInt);
+                    List<Todo> todoList = new ArrayList<>();
+                    todoList.add(todo);
+                    responseWriter.write(Service.todosToHTMLTable(todoList));
+                    resp.setStatus(HttpServletResponse.SC_OK);
+                    resp.setContentType("text/html");
+                    responseWriter.flush();
+                }else{
+                    resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                    responseWriter.write("No existe un item con el identificador dado.");
+                    responseWriter.flush();
+                }
+            }catch (Exception e){
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                responseWriter.write("Requerimiento inválido.");
+                responseWriter.flush();
+            }
+            
+        }else{
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            responseWriter.write("Requerimiento inválido.");
+            responseWriter.flush();
+        }   
+    }
 }
