@@ -63,8 +63,8 @@ public class PruebaServlet extends HttpServlet{
         PrintWriter responseWriter = resp.getWriter();
         Optional<String> optName = Optional.ofNullable(req.getParameter("id"));
         String param = optName.isPresent() && !optName.get().isEmpty() ? optName.get() : "";
-       
-        if(param != ""){
+        
+        if(param != "" ){
             try{
                 int paramInt = Integer.parseInt(param);
                 if(paramInt<=200 && paramInt >=1 ){
@@ -80,6 +80,10 @@ public class PruebaServlet extends HttpServlet{
                     responseWriter.write("No existe un item con el identificador dado.");
                     responseWriter.flush();
                 }
+            }catch(MalformedURLException e){
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                responseWriter.write("Error interno del servidor.");
+                responseWriter.flush();
             }catch (Exception e){
                 resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 responseWriter.write("Requerimiento inválido.");
@@ -90,6 +94,6 @@ public class PruebaServlet extends HttpServlet{
             resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
             responseWriter.write("Requerimiento inválido.");
             responseWriter.flush();
-        }   
+        }     
     }
 }
