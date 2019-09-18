@@ -21,11 +21,7 @@ public class SesionBean {
     private String estado;
     
     public SesionBean(){
-        Random rand = new Random();
-        numero = rand.nextInt(50);
-        intentos = 0;
-        acumulado = 100000;
-        estado = "";
+        restart();
     }
     
     public void guess(int adivinanza){
