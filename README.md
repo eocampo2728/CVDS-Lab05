@@ -9,9 +9,11 @@
 
 ### Metodo Get
 ![MetodoGet](https://github.com/eocampo2728/CVDS-Lab05/blob/master/Imagenes/Get.PNG?raw=true)
+
 Como observamos en la imagen el método **get** en el formulario realizado en el html permite que el nombre de los parámetros y su valor se muestren en la url lo que hace que este método sea inseguro ya que otra persona puede observar datos del cliente.
 
 ![MetodoPost](https://github.com/eocampo2728/CVDS-Lab05/blob/master/Imagenes/Post.PNG?raw=true)
+
 Mientras que con este método **post** vemos en la foto anterior que en la url no se muestran el nombre de los parámetros ni sus valores, este método es mas seguro que el get ya que no muestra información del cliente en la url y pasa estos datos de forma que no sea visible para los demás.
 
 #### Otros Metodos:
