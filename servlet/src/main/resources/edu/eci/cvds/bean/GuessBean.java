@@ -5,10 +5,9 @@
  */
 package edu.eci.cvds.bean;
 
+import java.util.ArrayList;
 import java.util.Random;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
-import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "GuessBean") 
 //@ApplicationScoped 
@@ -22,6 +21,7 @@ public class GuessBean {
     private int acumulado;
     private String estado;
     private int numeroUsuario;
+    private String intentosFallidos;
     
     public GuessBean(){
         restart();
@@ -37,6 +37,8 @@ public class GuessBean {
                 acumulado-=10000;
                 intentos++;
                 estado="fallo";
+                
+                intentosFallidos += " " + String.valueOf(numeroUsuario)+",";
             }
         }else{
             if(estado!="gano" && numeroUsuario>=0 && numeroUsuario<=20 ){
@@ -61,7 +63,16 @@ public class GuessBean {
         intentos = 0;
         acumulado = 100000;
         estado = "Tiene que adivinar un numero entero entre 0 y 20.";
+        intentosFallidos = "";
         
+    }
+    
+    public String getIntentosFallidos(){
+        return intentosFallidos;
+    }
+    
+    public void setIntentosFallidos(String intentosFallidos){
+        this.intentosFallidos = intentosFallidos;
     }
     
     public int getNumeroUsuario(){
