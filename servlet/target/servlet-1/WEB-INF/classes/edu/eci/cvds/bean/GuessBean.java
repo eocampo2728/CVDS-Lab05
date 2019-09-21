@@ -27,6 +27,10 @@ public class GuessBean {
         restart();
     }
     
+    /**
+     * This is method guess the number that the user try to guess to the program
+     * @param numeroUsuario the integer that represent the number the user wants to guess
+     */
     public void guess(int numeroUsuario){
         
         if(acumulado > 0 && estado!="gano" && numeroUsuario>=0 && numeroUsuario<=20){
@@ -47,6 +51,10 @@ public class GuessBean {
         }
     }
     
+    /**
+     * This method vadidate if the entance of the method is a int or a string
+     * @param numeroUsuario  number that the user wants to guess
+     */
     public void guess(String numeroUsuario){
         try{
             this.numeroUsuario = Integer.parseInt(numeroUsuario);
@@ -57,6 +65,9 @@ public class GuessBean {
         }
     }
     
+    /**
+     * This method restart the game
+     */
     public void restart(){
         Random rand = new Random();
         numero = rand.nextInt(21);
